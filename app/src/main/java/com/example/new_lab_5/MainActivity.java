@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonForward = findViewById(R.id.forwardBtn);
         fragmentManager = getSupportFragmentManager();
 
-        PageFragment initialPage = new PageFragment(1, "Задача 1 1:04:2024");
+        PageFragment initialPage = new PageFragment(1, "Задача № 1 6:05:2024");
         stack.push(initialPage);
         updateStack();
         updateFragment();
@@ -70,12 +70,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonForward.setOnClickListener(v -> {
-            PageFragment pageFragment = new PageFragment(stack.size() + 1,
-                    "Задача " + (stack.size() + 1) + " " + (stack.size() + 1)
-                            + ".04.2024");
-            stack.push(pageFragment);
-            updateStack();
-            updateFragment();
+            if (stack.size() <= 4)
+            {
+                PageFragment pageFragment = new PageFragment(stack.size() + 1,
+                        "Задача № " + (stack.size() + 1) + " " + ((stack.size() + 2) * 3)
+                                + ".05.2024");
+                stack.push(pageFragment);
+                updateStack();
+                updateFragment();
+            }
         });
 
         Button createPage = findViewById(R.id.createPageBtn);
@@ -167,9 +170,9 @@ public class MainActivity extends AppCompatActivity {
                 textView.setGravity(Gravity.CENTER);
                 textView.setTextSize(20);
                 if (j == 0)
-                    textView.setText("Задача " + (i + 1));
+                    textView.setText("Задача № " + (i + 1));
                 else
-                    textView.setText((i + 1) * 5 + ":04:2024");
+                    textView.setText((i + 2) * 3 + ":05:2024");
                 tableRow.addView(textView);
             }
 
@@ -201,21 +204,21 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-        menu.add(v.getId(), 1, 0, "Red");
-        menu.add(v.getId(), 2, 0, "Green");
-        menu.add(v.getId(), 3, 0, "Blue");
+        menu.add(v.getId(), 1, 0, "Пункт 1");
+        menu.add(v.getId(), 2, 0, "Пункт 2");
+        menu.add(v.getId(), 3, 0, "Пункт 3");
     }
     @Override
     public boolean onContextItemSelected(MenuItem item){
         switch (item.getItemId()){
             case 1:
-                Log.i("Меню", "Red " + item.getGroupId());
+                Log.i("Меню", "Пункт 1");
                 break;
             case 2:
-                Log.i("Меню", "Green " + item.getGroupId());
+                Log.i("Меню", "Пункт 2");
                 break;
             case 3:
-                Log.i("Меню", "Blue " + item.getGroupId());
+                Log.i("Меню", "Пункт 3");
                 break;
         }
         return super.onContextItemSelected(item);

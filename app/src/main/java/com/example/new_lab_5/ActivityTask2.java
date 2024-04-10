@@ -63,12 +63,10 @@ public class ActivityTask2 extends AppCompatActivity {
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                // Обработайте изменение состояния Bottom Sheet
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                // Обработайте смещение Bottom Sheet при прокрутке
             }
         });
 
@@ -90,12 +88,10 @@ public class ActivityTask2 extends AppCompatActivity {
         showPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Отобразить PopupWindow сверху
                 showPopupWindow();
             }
         });
 
-        // Обработать нажатие вне PopupWindow для его скрытия
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

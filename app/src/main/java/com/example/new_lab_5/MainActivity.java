@@ -8,18 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,17 +26,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import java.util.Calendar;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
-    private ExpandableListView expandableListView;
     private Stack<Fragment> stack = new Stack<>();
     private TextView textViewStack;
     private FragmentManager fragmentManager;
@@ -85,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Button deletePage = findViewById(R.id.deletePageBtn);
         createPage.setOnClickListener(v -> {
             if (task2 == null) {
-                task2 = new Intent(this, ActivityTask2.class);
+                task2 = new Intent(this, SecondActivity.class);
                 startActivityForResult(task2, 1);
             } else {
                 startActivityForResult(task2, 1);
@@ -152,39 +142,22 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         });
 
-        TableLayout tableLayout = findViewById(R.id.table);
-        //registerForContextMenu(tableLayout);
-        for (int i = 0; i < 5; i++) {
-            TableRow tableRow = new TableRow(this);
-            tableRow.setId(i);
-            tableRow.setLayoutParams(new TableRow.LayoutParams(
-                    TableRow.LayoutParams.MATCH_PARENT,
-                    TableRow.LayoutParams.WRAP_CONTENT));
 
-            for (int j = 0; j < 2; j++) {
-                TextView textView = new TextView(this);
-                textView.setLayoutParams(new TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1.0f));
-                textView.setGravity(Gravity.CENTER);
-                textView.setTextSize(20);
-                if (j == 0)
-                    textView.setText("Задача № " + (i + 1));
-                else
-                    textView.setText((i + 2) * 3 + ":05:2024");
-                tableRow.addView(textView);
-            }
-
-            registerForContextMenu(tableRow);
-            tableLayout.addView(tableRow);
-
-        }
 
         Button webBtn = findViewById(R.id.webBtn);
 
         webBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, WebActivity.class));
+        });
+
+        Button swipeBtn = findViewById(R.id.clickerBtn);
+        swipeBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, SwipeActivity.class));
+        });
+
+        Button taskBtn = findViewById(R.id.listTasksBtn);
+        taskBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, TasksActivity.class));
         });
 
     }

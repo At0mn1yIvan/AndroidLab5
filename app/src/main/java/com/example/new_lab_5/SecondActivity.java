@@ -1,7 +1,6 @@
 package com.example.new_lab_5;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,8 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,25 +18,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.navigation.NavigationView;
 
 
-public class ActivityTask2 extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
     private BottomSheetBehavior bottomSheetBehavior;
     private PopupWindow popupWindow;
     private View popupView;
@@ -47,7 +33,7 @@ public class ActivityTask2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task2);
+        setContentView(R.layout.activity_second);
 
         Button b = findViewById(R.id.button);
         b.setOnClickListener(v -> {
@@ -70,20 +56,15 @@ public class ActivityTask2 extends AppCompatActivity {
             }
         });
 
-        // Надуть разметку выдвигающегося окна
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         popupView = inflater.inflate(R.layout.popup_window, null);
 
-        // Создать PopupWindow
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
-        // Установить фоновую прозрачность для PopupWindow
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        // Установить анимацию для PopupWindow (необязательно)
         popupWindow.setAnimationStyle(R.style.PopupAnimation);
 
-        // Обработать нажатие на кнопку для отображения PopupWindow
         Button showPopupButton = findViewById(R.id.show_popup_button);
         showPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,12 +126,10 @@ public class ActivityTask2 extends AppCompatActivity {
     }
 
     private void showPopupWindow() {
-        // Получить размеры экрана
         Rect displayRectangle = new Rect();
         Window window = getWindow();
         window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
 
-        // Отобразить PopupWindow сверху
         popupWindow.showAtLocation(findViewById(R.id.coordinatorLayout), Gravity.TOP, 0, displayRectangle.top);
     }
 
